@@ -30,3 +30,38 @@ $breakpoints: (
     }
   }
 }
+
+@mixin sectionTitle {
+  width: 100%;
+  text-align: center;
+  letter-spacing: 1px;
+  font-size: 2rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  margin: 15px 0;
+
+  @include mq(large) {
+    font-size: 3.5rem;
+  }
+}
+
+@mixin sliderArrow {
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  background-color: #fff;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  outline: transparent;
+  transition: 0.2s linear;
+
+  &:hover {
+    border-radius: 10px;
+    background-color: #222;
+    color: #eee;
+  }
+}

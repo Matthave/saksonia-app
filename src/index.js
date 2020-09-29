@@ -7,6 +7,7 @@ import {
   listColor,
 } from "./constant/constantText";
 import { dotsFilter } from "./tools/dotsFilter";
+import { tns } from "../node_modules/tiny-slider/src/tiny-slider";
 
 class App {
   constructor() {
@@ -23,6 +24,7 @@ class App {
     burgerIcon.addEventListener("click", () => this.burgerClickFunc());
 
     this.generateDotsLocalization();
+    this.generateRegionElements();
   };
 
   burgerClickFunc = () => {
@@ -48,6 +50,54 @@ class App {
       dot.addEventListener("touchstart", (e) => this.touchStartFunc(e));
 
       tripMap.appendChild(dot);
+    });
+  };
+
+  generateRegionElements = () => {
+    const sliderContainer = document.querySelector(".my-slider");
+    const allDots = [...familyTrip, ...cityTrip, ...activeTrip, ...unescoTrip];
+    allDots.forEach((ele) => {
+      const sliderElement = document.createElement("div");
+      const sliderImg = document.createElement("h2");
+      const sliderText = document.createElement("h4");
+      const sliderBtn = document.createElement("button");
+
+      sliderElement.setAttribute("class", "region__slide");
+      sliderImg.textContent = "Any Picture Here";
+      sliderImg.setAttribute("class", "region__img");
+      sliderText.textContent = ele.name;
+      sliderText.setAttribute("class", "region__text");
+      sliderBtn.textContent = "Dowiedz sie więcej";
+      sliderBtn.setAttribute("class", "region__btn");
+
+      sliderElement.appendChild(sliderImg);
+      sliderElement.appendChild(sliderText);
+      sliderElement.appendChild(sliderBtn);
+
+      const currentColor = listColor.filter((color) =>
+        color.id.includes(ele.dotClass.slice(5))
+      );
+
+      sliderElement.style.borderBottom = `solid 3.5px ${currentColor[0].color}`;
+      sliderContainer.appendChild(sliderElement);
+    });
+
+    var slider = tns({
+      container: ".my-slider",
+      items: 2,
+      slideBy: "page",
+      arrowKeys: true,
+      mouseDrag: true,
+      controls: false,
+      responsive: {
+        640: {
+          items: 4,
+        },
+        1200: {
+          items: 4,
+          controls: true,
+        },
+      },
     });
   };
 

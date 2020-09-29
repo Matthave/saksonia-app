@@ -1,0 +1,89 @@
+.region {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.region__title {
+  @include sectionTitle;
+}
+
+.my-slider {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.region__slide {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dcdcdc;
+  margin: 0 10px;
+}
+
+.region__img {
+  width: 100%;
+  height: 175px;
+  border-bottom: 1px solid black;
+  text-align: center;
+  line-height: 75px;
+  padding: 10px;
+}
+
+.region__text {
+  width: 100%;
+  height: 50px;
+  font-size: 1.2rem;
+  padding: 5px 10px;
+  margin: 5px auto;
+
+  @include mq(medium) {
+    font-size: 1.5rem;
+  }
+}
+
+.region__btn {
+  width: 150px;
+  height: 30px;
+  border: 2px solid #dcdcdc;
+  background-color: #fff;
+  font-size: 1.2rem;
+  margin: 20px 0px 10px 10px;
+  cursor: pointer;
+
+  @include mq(large) {
+    width: 175px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+}
+
+.tns-outer {
+  position: relative;
+}
+
+.tns-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 999;
+
+  & > button:nth-of-type(1) {
+    @include sliderArrow;
+    transform: translate(-70px);
+
+    &:hover {
+      box-shadow: -3px 0 2px 1px rgb(52, 145, 52);
+    }
+  }
+
+  & > button:nth-of-type(2) {
+    @include sliderArrow;
+    transform: translate(70px);
+    &:hover {
+      box-shadow: 3px 0 2px 1px rgb(52, 145, 52);
+    }
+  }
+}
