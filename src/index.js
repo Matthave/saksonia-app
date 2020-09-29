@@ -1,13 +1,28 @@
 import "./SASS/style.scss";
+import {
+  familyTrip,
+  cityTrip,
+  activeTrip,
+  unescoTrip,
+  listColor,
+} from "./constant/constantText";
+import { dotsFilter } from "./tools/dotsFilter";
 
 class App {
   constructor() {
     this.burgerToggle = false;
+    this.selectDot = false;
   }
 
   init = () => {
     const burgerIcon = document.querySelector(".burger__container");
+    const tripMenu = document.querySelectorAll(".trip__list");
+    tripMenu.forEach((ele) => {
+      ele.addEventListener("click", (e) => dotsFilter(e, listColor));
+    });
     burgerIcon.addEventListener("click", () => this.burgerClickFunc());
+
+    this.generateDotsLocalization();
   };
 
   burgerClickFunc = () => {
@@ -18,6 +33,48 @@ class App {
       ulElement.classList.add("nav__ul--hideToggle");
     }
     this.burgerToggle = !this.burgerToggle;
+  };
+
+  generateDotsLocalization = () => {
+    const tripMap = document.querySelector(".trip__map");
+    const allDots = [...familyTrip, ...cityTrip, ...activeTrip, ...unescoTrip];
+    allDots.forEach((ele) => {
+      const dot = document.createElement("span");
+      dot.setAttribute("class", `fas fa-map-marker dot ${ele.dotClass}`);
+      dot.setAttribute("id", ele.id);
+      dot.style.top = `${Math.random() * (90 - 10) + 10}%`;
+      dot.style.left = `${Math.random() * (90 - 10) + 10}%`;
+
+      dot.addEventListener("touchstart", (e) => this.touchStartFunc(e));
+
+      tripMap.appendChild(dot);
+    });
+  };
+
+  touchStartFunc = (e) => {
+    this.selectDot = true;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("touchmove", (e) => this.touchMoveFunc(e));
+    document.addEventListener("touchend", (e) => this.touchEndFunc(e));
+  };
+
+  touchMoveFunc = (e) => {
+    const scrollHeight = window.scrollY;
+    const target = e.target;
+    const tripMap = document.querySelector(".trip__map");
+    if (this.selectDot) {
+      target.style.left = `${e.touches[0].pageX - 5}px`;
+      target.style.top = `${
+        e.touches[0].pageY - tripMap.getClientRects()[0].top - scrollHeight
+      }px`;
+    }
+  };
+
+  touchEndFunc = (e) => {
+    this.selectDot = false;
+    document.body.style.overflow = "initial";
+    document.removeEventListener("touchmove", (e) => this.touchMoveFunc(e));
+    document.removeEventListener("touchend", (e) => this.touchEndFunc(e));
   };
 }
 

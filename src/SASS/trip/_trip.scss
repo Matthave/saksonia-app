@@ -1,4 +1,5 @@
 .trip {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -23,9 +24,11 @@
   }
 
   &__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100px;
-    height: 44px;
-    line-height: 44px;
+    height: 45px;
     text-align: center;
     list-style: none;
     text-transform: uppercase;
@@ -33,35 +36,50 @@
     cursor: pointer;
     font-size: 1.2rem;
     font-weight: 600;
+    transition: 0.15s linear;
+
+    @include mq(medium) {
+      width: 130px;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__listText {
+    pointer-events: none;
   }
 }
 
 .all {
-  border: 1px solid #dcdcdc;
+  border: 2px solid #dcdcdc;
+  background-color: #dcdcdc;
 }
 
 .family {
-  border: 1px solid #009e5f;
+  border: 2px solid #009e5f;
 }
 
 .city {
-  border: 1px solid #35a2e7;
+  border: 2px solid #35a2e7;
 }
 
 .active {
-  border: 1px solid #d1831d;
+  border: 2px solid #d1831d;
 }
 
 .unesco {
-  border: 1px solid #7bb6ba;
+  border: 2px solid #7bb6ba;
   background-color: #7bb6ba;
 }
 
 .trip__map {
-  display: none;
-  @include mq(large) {
-    display: block;
-    width: 1024px;
-    margin: 20px auto;
-  }
+  position: relative;
+  width: 100%;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.trip__mapImg {
+  width: 100%;
+  margin: 0 auto;
+  z-index: 0;
 }

@@ -1,0 +1,30 @@
+.dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  cursor: pointer;
+
+  @include mq(medium) {
+    font-size: 40px;
+  }
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  &__family {
+    color: #009e5f;
+  }
+
+  &__city {
+    color: #35a2e7;
+  }
+
+  &__active {
+    color: #d1831d;
+  }
+
+  &__unesco {
+    color: #7bb6ba;
+  }
+}
