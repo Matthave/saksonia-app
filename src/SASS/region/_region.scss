@@ -11,6 +11,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
+  cursor: pointer;
 }
 
 .region__slide {
@@ -23,7 +24,7 @@
 .region__img {
   width: 100%;
   height: 175px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #dcdcdc;
   text-align: center;
   line-height: 75px;
   padding: 10px;
@@ -75,7 +76,7 @@
     transform: translate(-70px);
 
     &:hover {
-      box-shadow: -3px 0 2px 1px rgb(52, 145, 52);
+      box-shadow: -3px 0 2px 1px #009e5f;
     }
   }
 
@@ -83,7 +84,7 @@
     @include sliderArrow;
     transform: translate(70px);
     &:hover {
-      box-shadow: 3px 0 2px 1px rgb(52, 145, 52);
+      box-shadow: 3px 0 2px 1px #009e5f;
     }
   }
 }

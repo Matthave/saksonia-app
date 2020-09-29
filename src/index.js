@@ -6,25 +6,68 @@ import {
   unescoTrip,
   listColor,
 } from "./constant/constantText";
-import { dotsFilter } from "./tools/dotsFilter";
+import { dotsFilterTool, generateDotsLocalization } from "./tools/utils";
 import { tns } from "../node_modules/tiny-slider/src/tiny-slider";
 
 class App {
   constructor() {
     this.burgerToggle = false;
     this.selectDot = false;
+    this.dotsFiltered = [
+      ...familyTrip,
+      ...cityTrip,
+      ...activeTrip,
+      ...unescoTrip,
+    ];
   }
 
   init = () => {
     const burgerIcon = document.querySelector(".burger__container");
     const tripMenu = document.querySelectorAll(".trip__list");
     tripMenu.forEach((ele) => {
-      ele.addEventListener("click", (e) => dotsFilter(e, listColor));
+      ele.addEventListener("click", (e) => this.dotsFilter(e, listColor));
     });
     burgerIcon.addEventListener("click", () => this.burgerClickFunc());
 
     this.generateDotsLocalization();
     this.generateRegionElements();
+  };
+
+  dotsFilter = (e, listColor) => {
+    const classListArray = [...e.target.classList];
+    const everyDotsArray = [
+      ...familyTrip,
+      ...cityTrip,
+      ...activeTrip,
+      ...unescoTrip,
+    ];
+
+    const dotsFilter = everyDotsArray.filter((ele) => {
+      return ele.dotClass.slice(5) === classListArray[1];
+    });
+
+    if (classListArray[1] === "all") {
+      this.dotsFiltered = [
+        ...familyTrip,
+        ...cityTrip,
+        ...activeTrip,
+        ...unescoTrip,
+      ];
+    } else {
+      this.dotsFiltered = dotsFilter;
+    }
+
+    dotsFilterTool(e, listColor);
+    this.generateRegionElements();
+
+    const tripLists = document.querySelectorAll(".trip__list");
+    const currentList = document.querySelector(`.${classListArray[1]}`);
+    tripLists.forEach((ele) => (ele.style.backgroundColor = "#fff"));
+
+    const currentColor = listColor.filter(
+      (ele) => ele.id === classListArray[1]
+    );
+    currentList.style.backgroundColor = currentColor[0].color;
   };
 
   burgerClickFunc = () => {
@@ -55,8 +98,8 @@ class App {
 
   generateRegionElements = () => {
     const sliderContainer = document.querySelector(".my-slider");
-    const allDots = [...familyTrip, ...cityTrip, ...activeTrip, ...unescoTrip];
-    allDots.forEach((ele) => {
+    sliderContainer.innerHTML = "";
+    this.dotsFiltered.forEach((ele) => {
       const sliderElement = document.createElement("div");
       const sliderImg = document.createElement("h2");
       const sliderText = document.createElement("h4");

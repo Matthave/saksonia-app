@@ -1,4 +1,4 @@
-export const dotsFilter = (e, listColor) => {
+export const dotsFilterTool = (e, listColor) => {
   const classListArray = [...e.target.classList];
   const allDots = document.querySelectorAll(".dot");
   const currentDots = document.querySelectorAll(`.dot__${classListArray[1]}`);
