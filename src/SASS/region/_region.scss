@@ -62,14 +62,22 @@
   position: relative;
 }
 
+.tns-nav {
+  display: none;
+}
+
 .tns-controls {
-  display: flex;
+  display: none;
   justify-content: space-between;
   width: 100%;
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
   z-index: 999;
+
+  @include mq(xlarge) {
+    display: flex;
+  }
 
   & > button:nth-of-type(1) {
     @include sliderArrow;

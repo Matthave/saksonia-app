@@ -593,6 +593,8 @@ template {
           transform: translate(-50%, -50%);
   font-size: 30px;
   cursor: pointer;
+  -webkit-transition: opacity 0.1s linear;
+  transition: opacity 0.1s linear;
 }
 
 @media (min-width: 800px) {
@@ -710,10 +712,12 @@ template {
   position: relative;
 }
 
+.tns-nav {
+  display: none;
+}
+
 .tns-controls {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -723,6 +727,14 @@ template {
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
   z-index: 999;
+}
+
+@media (min-width: 1200px) {
+  .tns-controls {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 
 .tns-controls > button:nth-of-type(1) {
