@@ -557,21 +557,40 @@ template {
   background-color: #dcdcdc;
 }
 
+.all:hover {
+  background-color: #dcdcdc !important;
+}
+
 .family {
   border: 2px solid #009e5f;
+}
+
+.family:hover {
+  background-color: #009e5f !important;
 }
 
 .city {
   border: 2px solid #35a2e7;
 }
 
+.city:hover {
+  background-color: #35a2e7 !important;
+}
+
 .active {
   border: 2px solid #d1831d;
 }
 
+.active:hover {
+  background-color: #d1831d !important;
+}
+
 .unesco {
   border: 2px solid #7bb6ba;
-  background-color: #7bb6ba;
+}
+
+.unesco:hover {
+  background-color: #7bb6ba !important;
 }
 
 .trip__map {
@@ -726,7 +745,7 @@ template {
   top: 50%;
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
-  z-index: 999;
+  z-index: 0;
 }
 
 @media (min-width: 1200px) {

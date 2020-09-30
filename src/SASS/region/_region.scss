@@ -73,7 +73,7 @@
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
-  z-index: 999;
+  z-index: 0;
 
   @include mq(xlarge) {
     display: flex;
